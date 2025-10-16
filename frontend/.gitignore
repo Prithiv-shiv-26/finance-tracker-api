@@ -1,4 +1,45 @@
-node_modules
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependency directories
+node_modules/
+
+# Compiled output / Build directories
+dist/
+dist-ssr/
+build/
+out/
+.vite/ # Vite's own cache/temp directory
+
+# Environments
 .env
+.env.*.local # Catches .env.development.local, .env.production.local etc.
+*.local # Your existing entry, covers .env.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json # Keep extensions.json to recommend extensions to team members
+.idea/
 .DS_Store
-dist
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.cache/ # General cache directory
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Test output
+coverage/
+
+# Misc
+*.pem
+*.key
