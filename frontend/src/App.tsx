@@ -1,35 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import Navbar from "@/components/Navbar";
+import LeftPanel from "./components/LeftPanel";
+import RightPanel from "./components/RightPanel";
+import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="h-screen w-screen bg-black text-white flex flex-col">
+      <Navbar />
+      <main className="flex-1 min-h-0 pt-16 px-4">
+        <div className="mx-auto w-full max-w-7xl h-full mt-4">
+          {/* Mobile: stacked panels */}
+          <div className="md:hidden space-y-4 h-full overflow-auto">
+            <LeftPanel />
+            <RightPanel />
+          </div>
+
+          {/* Desktop: resizable panels */}
+          <div className="hidden h-full md:block">
+            <ResizablePanelGroup
+              direction="horizontal"
+              className="h-full w-full rounded-lg border border-white/10"
+            >
+              <ResizablePanel
+                defaultSize={35}
+                minSize={28}
+                className="min-w-0 p-3 overflow-auto"
+              >
+                <LeftPanel />
+              </ResizablePanel>
+              <ResizableHandle withHandle className="border-white/20" />
+              <ResizablePanel
+                defaultSize={65}
+                minSize={40}
+                className="min-w-0 p-3 overflow-auto"
+              >
+                <RightPanel />
+              </ResizablePanel>
+            </ResizablePanelGroup>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;
