@@ -23,7 +23,7 @@ import {
   CommandItem,
 } from "@/components/ui/command";
 import { Calendar } from "@/components/ui/calendar";
-import { CalendarIcon, Check } from "lucide-react";
+import { Check } from "lucide-react";
 import { cn } from "@/lib/utils"; // shadcn utility (if present)
 import { useState } from "react";
 import { GradientButton } from "@/components/ui/gradient-button";
@@ -71,7 +71,7 @@ export default function LeftPanel() {
   const [type, setType] = useState<"income" | "expense">("income");
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState<string>("");
-  const [currency, setCurrency] = useState("$");
+  const [currency, setCurrency] = useState("₹");
   const [category, setCategory] = useState<string | null>(null);
   const [openDate, setOpenDate] = useState(false);
   const [openCategory, setOpenCategory] = useState(false);
@@ -80,8 +80,8 @@ export default function LeftPanel() {
   const [time, setTime] = useState<string>("12:00");
 
   return (
-    <CardHoverWrapper gradientClassName="from-fuchsia-500 to-violet-500">
-      <Card className="bg-[#141414] border-white/15 py-4">
+    <CardHoverWrapper className="h-full" gradientClassName="from-fuchsia-500 to-violet-500">
+      <Card className="h-full bg-[#141414] border-white/15 py-4">
         <CardHeader>
           <CardTitle className="text-white ">Quick Add Transaction</CardTitle>
         </CardHeader>
