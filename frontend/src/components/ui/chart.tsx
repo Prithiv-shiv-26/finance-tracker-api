@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Tooltip as RechartsTooltip } from "recharts"
+import { Tooltip as RechartsTooltip, Legend as RechartsLegend } from "recharts"
 import { cn } from "@/lib/utils"
 
 export type ChartConfig = Record<
@@ -61,6 +61,27 @@ export function ChartTooltipContent({ label, payload, hideLabel }: any) {
         <span className="opacity-90">{String(item?.name ?? "Value")}</span>
         <span className="font-semibold">{String(item?.value ?? "-")}</span>
       </div>
+    </div>
+  )
+}
+
+// Re-export Recharts Legend under a shadcn-friendly name
+export const ChartLegend = RechartsLegend
+
+// Simple legend content compatible with Recharts Legend `content` prop
+export function ChartLegendContent({ payload }: any) {
+  if (!payload || payload.length === 0) return null
+  return (
+    <div className="flex flex-wrap items-center gap-3 text-xs text-white/90">
+      {payload.map((entry: any, idx: number) => (
+        <div key={idx} className="inline-flex items-center gap-2">
+          <span
+            className="inline-block h-2 w-2 rounded-full"
+            style={{ background: (entry.color as string) ?? "#999" }}
+          />
+          <span className="opacity-90">{String(entry.value ?? entry.dataKey)}</span>
+        </div>
+      ))}
     </div>
   )
 }

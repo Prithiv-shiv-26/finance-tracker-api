@@ -22,31 +22,50 @@ import {
 export const description = "A donut chart with an active sector";
 
 // Placeholder category data using shades of blue
-const chartData = [
-  { category: "Food", value: 275, fill: "var(--color-food)" },
-  { category: "Transport", value: 200, fill: "var(--color-transport)" },
-  { category: "Shopping", value: 187, fill: "var(--color-shopping)" },
-  { category: "Bills", value: 173, fill: "var(--color-bills)" },
-  { category: "Other", value: 90, fill: "var(--color-other)" },
+const defaultData: ChartDatum[] = [
+  { category: "Food", value: 275 },
+  { category: "Transport", value: 200 },
+  { category: "Shopping", value: 187 },
+  { category: "Bills", value: 173 },
+  { category: "Other", value: 90 },
 ];
+
+const bluePalette = ["#1E40AF", "#2563EB", "#3B82F6", "#60A5FA", "#93C5FD"];
 
 const chartConfig = {
   value: { label: "Amount" },
-  food: { label: "Food", color: "#1E40AF" },
-  transport: { label: "Transport", color: "#2563EB" },
-  shopping: { label: "Shopping", color: "#3B82F6" },
-  bills: { label: "Bills", color: "#60A5FA" },
-  other: { label: "Other", color: "#93C5FD" },
 } satisfies ChartConfig;
 
-export function ChartPieDonutActive() {
+type ChartDatum = { category: string; value: number; color?: string };
+
+export function ChartPieDonutActive({
+  title = "Category Split",
+  data,
+  headerRight,
+}: {
+  title?: string;
+  data?: ChartDatum[];
+  headerRight?: React.ReactNode;
+}) {
   const [activeIndex, setActiveIndex] = React.useState(0);
+
+  const src = (data && data.length ? data : defaultData).slice(0, 12);
+  const chartData = src.map((d, i) => ({
+    category: d.category,
+    value: d.value,
+    fill: d.color ?? bluePalette[i % bluePalette.length],
+  }));
 
   return (
     <Card className="flex flex-col bg-[#121212] text-white border-white/10">
-      <CardHeader className="items-center pb-0">
-        <CardTitle>Category Split</CardTitle>
-        <CardDescription>Placeholder data</CardDescription>
+      <CardHeader className="pb-0">
+        <div className="flex items-center justify-between w-full gap-2">
+          <div>
+            <CardTitle>{title}</CardTitle>
+            <CardDescription>Placeholder data</CardDescription>
+          </div>
+          {headerRight ? <div className="shrink-0">{headerRight}</div> : null}
+        </div>
       </CardHeader>
       <CardContent className="flex-1 pb-2">
         <ChartContainer config={chartConfig} className="mx-auto max-w-[320px]">
