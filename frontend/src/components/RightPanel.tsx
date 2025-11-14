@@ -70,7 +70,7 @@ export default function RightPanel() {
 
   const budgetChartConfig = {
     current: { label: "Current", color: "#3B82F6" },
-    previous: { label: "Previous", color: "#60A5FA" },
+    previous: { label: "Previous", color: "#48D1CC" },
   };
 
   const categoryChartData = [
@@ -270,7 +270,10 @@ export default function RightPanel() {
                           cursor={false}
                           content={<ChartTooltipContent hideLabel />}
                         />
-                        <ChartLegend layout="vertical" content={<ChartLegendContent />} />
+                        <ChartLegend
+                          layout="vertical"
+                          content={<ChartLegendContent />}
+                        />
                         <Bar
                           dataKey="previous"
                           stackId="a"

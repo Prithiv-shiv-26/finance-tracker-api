@@ -80,7 +80,10 @@ export default function LeftPanel() {
   const [time, setTime] = useState<string>("12:00");
 
   return (
-    <CardHoverWrapper className="h-full" gradientClassName="from-fuchsia-500 to-violet-500">
+    <CardHoverWrapper
+      className="h-full"
+      gradientClassName="from-fuchsia-500 to-violet-500"
+    >
       <Card className="h-full bg-[#141414] border-white/15 py-4">
         <CardHeader>
           <CardTitle className="text-white ">Quick Add Transaction</CardTitle>
@@ -117,7 +120,7 @@ export default function LeftPanel() {
           </div>
           <Separator className="my-4 bg-white/10" />
 
-          <div className="space-y-2">
+          <div className="space-y-2 w-full">
             <Label htmlFor="title" className="text-white/80">
               Title/Description
             </Label>
@@ -126,15 +129,15 @@ export default function LeftPanel() {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="e.g., Groceries at Walmart"
-              className="bg-black/40 border-white/10 text-white placeholder:text-white/40"
+              className="w-full bg-black/40 border-white/10 text-white placeholder:text-white/40"
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="amount" className="text-white/80">
+            <Label htmlFor="amount" className="text-white/80 block">
               Amount
             </Label>
-            <ButtonGroup>
+            <ButtonGroup className="w-full">
               <div>
                 <Select value={currency} onValueChange={setCurrency}>
                   <SelectTrigger className="min-w-[4rem] bg-black/40 border-white/10 text-white font-mono justify-center">
@@ -150,7 +153,6 @@ export default function LeftPanel() {
                   </SelectContent>
                 </Select>
               </div>
-              <div>
                 <Input
                   id="amount"
                   type="number"
@@ -161,12 +163,12 @@ export default function LeftPanel() {
                   placeholder="10.00"
                   className="bg-black/40 border-white/10 text-white placeholder:text-white/40"
                 />
-              </div>
+
             </ButtonGroup>
           </div>
 
-          <div className="space-y-2">
-            <Label className="text-white/80">Category</Label>
+          <div className="space-y-2 w-full">
+            <Label className="text-white/80 block">Category</Label>
             <Popover open={openCategory} onOpenChange={setOpenCategory}>
               <PopoverTrigger asChild>
                 <Button
@@ -206,7 +208,7 @@ export default function LeftPanel() {
             </Popover>
           </div>
 
-          <div className="grid grid-cols-[1fr_auto] gap-2">
+          <div className="grid grid-cols-[1fr_auto] gap-2 w-full">
             {/* Date */}
             <div className="flex flex-col gap-3 ">
               <Label htmlFor="date-picker" className="px-1 text-white/80">
@@ -242,7 +244,7 @@ export default function LeftPanel() {
             </div>
 
             {/* Time */}
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 w-full">
               <Label htmlFor="time-picker" className="px-1 text-white/80">
                 Time
               </Label>
@@ -252,12 +254,12 @@ export default function LeftPanel() {
                 step="1"
                 value={time}
                 onChange={(e) => setTime(e.target.value)}
-                className="w-32 bg-black/40 border-white/10 text-white appearance-none [&::-webkit-calendar-picker-indicator]:hidden"
+                className="block w-28 bg-black/40 border-white/10 text-white appearance-none [&::-webkit-calendar-picker-indicator]:hidden"
               />
             </div>
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-2 w-full">
             <Label className="text-white/80">Tags</Label>
             <Tags>
               <TagsTrigger>

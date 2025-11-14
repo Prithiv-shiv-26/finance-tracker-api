@@ -38,7 +38,6 @@ export function ChartContainer({
   )
 }
 
-// Re-export Recharts Tooltip under the shadcn-friendly name
 export const ChartTooltip = RechartsTooltip
 
 // Loosen types to avoid depending on recharts type declarations
@@ -68,7 +67,6 @@ export function ChartTooltipContent({ label, payload, hideLabel }: any) {
 // Re-export Recharts Legend under a shadcn-friendly name
 export const ChartLegend = RechartsLegend
 
-// Simple legend content compatible with Recharts Legend `content` prop
 export function ChartLegendContent({ payload }: any) {
   if (!payload || payload.length === 0) return null
   return (
